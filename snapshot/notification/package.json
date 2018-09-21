@@ -1,0 +1,25 @@
+{
+	"name": "notification",
+	"description": "A notification server using websocket.",
+	"version": "1.0.0",
+	"private": true,
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"keywords": [
+		"cryptoexchange",
+		"websocket",
+		"liaoxuefeng",
+		"Node.js"
+	],
+	"author": "Liao Xuefeng",
+	"dependencies": {
+		"express": "4.16.2",
+		"socket.io": "2.0.4",
+		"ioredis": "3.2.2",
+		"request": "2.87.0",
+		"cloud-config-client": "1.4.2"
+	},
+	"devDependencies": {}
+}

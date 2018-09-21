@@ -1,0 +1,50 @@
+{
+	"name": "cold-wallet",
+	"description": "A cold wallet for bitcoin and ethereum.",
+	"version": "1.0.0",
+	"private": true,
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"keywords": [
+		"cryptoexchange",
+		"wallet",
+		"code wallet",
+		"liaoxuefeng",
+		"Node.js"
+	],
+	"author": "Liao Xuefeng",
+	"dependencies": {
+		"axios": "0.18.0",
+		"bignumber.js": "7.2.1",
+		"bip39": "2.5.0",
+		"bitcoinjs-lib": "3.3.2",
+		"ethereumjs-tx": "1.3.3",
+		"ethereumjs-util": "5.1.3",
+		"inquirer": "6.1.0",
+		"jjv": "1.0.2",
+		"koa": "2.4.1",
+		"koa-bodyparser": "4.2.0",
+		"koa-router": "7.3.0",
+		"lodash": "4.17.4",
+		"nanvc": "1.0.10",
+		"notp": "2.0.3",
+		"thirty-two": "1.0.2"
+	},
+	"devDependencies": {
+		"co": "4.5.1",
+		"should": "13.2.1",
+		"supertest": "3.0.0",
+		"sleep-promise": "2.0.0",
+		"less": "2.7.2",
+		"mocha": "3.1.0",
+		"chai": "3.5.0",
+		"gulp-less": "3.3.2",
+		"gulp-jslint": "1.0.10",
+		"gulp-uglify": "3.0.0",
+		"gulp-concat": "2.6.1",
+		"gulp-minify-css": "1.2.4",
+		"gulp": "3.9.1"
+	}
+}
