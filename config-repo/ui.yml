@@ -1,0 +1,57 @@
+# UI:
+
+server:
+  port: 8000
+
+crypto:
+  setting:
+    load-symbols-from: api
+    load-symbols-url: /ui/trades
+  ui:
+    # CDN服务器前缀
+    cdn-prefix: ${CDN_PREFIX:https://static.highdax.com}
+    ws:
+      # 配置WS服务器地址
+      host: ${WS_HOST:wss://wss.highdax.com}
+    api:
+      # 配置API服务器地址
+      endpoint: ${API_ENDPOINT:https://api.highdax.com}
+      # 配置与API服务器通信使用的api-key和api-secret:
+      api-key: ${UI_API_KEY:UIInternalKey}
+      api-secret: ${UI_API_SECRET:UIInternalSecret}
+      # 配置加密用户Cookie的token-key和token-secret，注意要与API服务器相关配置保持一致:
+      token-key: ${UI_TOKEN_KEY:tokenKey}
+      token-secret: ${UI_TOKEN_SECRET:tokenSecret}
+    manage-request:
+      # internal keys used for internal api invocation:
+      api-key: ${MANAGE_UI_API_KEY:ManageToUIInternalKey}
+      api-secret: ${MANAGE_UI_API_SECRET:ManageToUIInternalSecret}
+    redirect:
+      doc: ${REDIRECT_DOCS:/?doc}
+      api: ${REDIRECT_DOCS:/?api}
+      help: ${REDIRECT_DOCS:/?help}
+      blog: ${REDIRECT_DOCS:/?blog}
+      tweeter: ${REDIRECT_DOCS:/?tweeter}
+      telegram: ${REDIRECT_DOCS:/?telegram}
+
+  smtp:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:465}
+    username: ${SMTP_USERNAME:user@localhost}
+    password: ${SMTP_PASSWORD:password}
+    from: ${SMTP_FROM:noreply@localhost}
+
+spring:
+  # data source config:
+  ui-rw-datasource:
+    url: jdbc:mysql://${DB_UI_RW_HOST:${DB_RW_HOST:localhost}}/ui?useSSL=false&characterEncoding=utf8
+    username: ui_rw
+    password: ${DB_UI_RW_PASSWORD:ui_rw_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      max-lifetime: 600000
+      maximum-pool-size: 10
+      minimum-idle: 2

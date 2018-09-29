@@ -1,0 +1,15 @@
+# test:
+
+crypto:
+  setting:
+    name: KitDAX
+    timezone: Asia/Singapore
+  order:
+    features:
+      enable-fill-or-kill: true
+      enable-immediate-or-cancel: true
+      enable-post-only: true
+      enable-hidden: true
+#      enable-stop: true
+#      enable-stop-limit: true
+#      enable-trailing-stop: true

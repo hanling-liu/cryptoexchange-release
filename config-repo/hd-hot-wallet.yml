@@ -1,0 +1,60 @@
+# HDHotWallet Config:
+
+server:
+  port: 8009
+
+crypto:
+  setting:
+    load-symbols-from: api
+    load-symbols-url: /wallet/trades
+  wallet:
+    cold:
+      endpoint: ${COLD_ENDPOINT:http://localhost:8007}
+      # 配置与冷钱包通信使用的key和secret:
+      api-key: ${COLD_API_KEY:ColdWalletInternalKey}
+      api-secret: ${COLD_API_SECRET:ColdWalletInternalSecret}
+    api:
+      # 配置API服务器地址，默认为http://localhost:8001
+      endpoint: ${API_ENDPOINT:http://localhost:8001}
+      # 配置与API服务器通信使用的api-key和api-secret:
+      api-key: ${WALLET_API_KEY:WalletInternalKey}
+      api-secret: ${WALLET_API_SECRET:WalletInternalSecret}
+    # BTC节点:
+    btc:
+      enabled: ${BLOCKCHAIN_BTC_ENABLED:false}
+      endpoint: ${BLOCKCHAIN_BTC_ENDPOINT:http://btc.blockchain.highdax.com}
+    # Usdt节点:
+    usdt:
+      enabled: ${BLOCKCHAIN_OMNI_ENABLED:false}
+      endpoint: ${BLOCKCHAIN_OMNI_ENDPOINT:http://omni.blockchain.highdax.com}
+    # ETH节点:
+    eth:
+      enabled: ${BLOCKCHAIN_ETH_ENABLED:false}
+      endpoint: ${BLOCKCHAIN_ETH_ENDPOINT:http://eth.blockchain.highdax.com}
+    # ETC节点:
+    etc:
+      enabled: ${BLOCKCHAIN_ETC_ENABLED:false}
+      endpoint: ${BLOCKCHAIN_ETC_ENDPOINT:http://etc.blockchain.highdax.com}
+    # LTC节点
+    ltc:
+      enabled: ${BLOCKCHAIN_LTC_ENABLED:false}
+      endpoint: ${BLOCKCHAIN_LTC_ENDPOINT:http://ltc.blockchain.highdax.com}
+    # QTUM节点:
+    qtum:
+      enabled: ${BLOCKCHAIN_QTUM_ENABLED:false}
+      endpoint: ${BLOCKCHAIN_QTUM_ENDPOINT:http://qtum.blockchain.highdax.com}
+
+spring:
+  hd-rw-datasource:
+    url: jdbc:mysql://${DB_HW_RW_HOST:${DB_RW_HOST:localhost}}/hd?useSSL=false&characterEncoding=utf8
+    username: hd_rw
+    password: ${DB_HD_RW_PASSWORD:hd_rw_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      validation-timeout: 3000
+      max-lifetime: 600000
+      maximum-pool-size: 10
+      minimum-idle: 2

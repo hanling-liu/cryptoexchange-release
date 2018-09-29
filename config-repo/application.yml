@@ -1,0 +1,45 @@
+# 全局配置:
+server:
+  tomcat:
+    use-forward-headers: true
+    protocol-header: x-forwarded-proto
+
+crypto:
+  setting:
+    # name of the exchange:
+    name: ${EXCHANGE_NAME:HighDAX}
+    # 交易时区，默认为空，即服务器默认时区（通过ZoneId.systemDefault()获取的时区）
+    timezone: ${EXCHANGE_TIMEZONE:}
+    # 全局32bytes Key:
+    aes-key: ${EXCHANGE_AES_KEY:CryptoExchangeAESRandomSecureKey}
+    web:
+      # 最大允许POST数据大小，默认为8K:
+      max-request-body-size: 8192
+      internalKeys:
+        ui: ${INTERNAL_UI_KEY:UIInternalKey}
+        wallet: ${INTERNAL_WALLET_KEY:WalletInternalKey}
+        manage: ${INTERNAL_MANAGE_KEY:ManageInternalKey}
+  # 消息服务器配置:
+  messaging:
+    # RocketMQ name server:
+    namesrv: ${MQ_NAME_HOST:localhost:9876}
+
+  # 上传目录配置
+  storage:
+    type: s3
+    s3: 
+      region: ${S3_REGION:ap-northeast-1}
+      bucket: ${S3_BUCKET:sample}
+      aws-api-key: ${S3_API_KEY:N/A}
+      aws-api-secret: ${S3_API_SECRET:N/A}
+
+  # Redis配置:
+  redis:
+    # 配置模式: single, cluster, elasticcache:
+    mode: ${REDIS_MODE:single}
+    # Redis节点地址列表:
+    nodes:
+      - "redis://${REDIS_HOST:localhost:6379}"
+      # - "redis://10.1.0.100:6379"
+      # - "redis://10.1.0.101:6379"
+      # - "redis://10.1.0.102:6379"

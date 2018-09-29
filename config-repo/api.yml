@@ -1,0 +1,67 @@
+# API配置:
+
+server:
+  port: 8001
+
+crypto:
+  setting:
+    load-symbols-from: db
+    fex:
+      from-currency: USD
+      to-currencies: AUD, CAD, CNY, EUR, GBP, HKD, JPY, KRW, RUB, SGD, TWD
+      # TODO: change the following api-key to yours at https://www.alphavantage.co/support/#api-key
+      alphavantage-api-key: GV7BIQN1HIU1QKEG
+  api:
+    request:
+      # set token key that configured same as ui:
+      token-key: ${UI_TOKEN_KEY:tokenKey}
+      token-secret: ${UI_TOKEN_SECRET:tokenSecret}
+      # internal keys used for internal api invocation:
+      ui:
+        api-key: ${UI_API_KEY:UIInternalKey}
+        api-secret: ${UI_API_SECRET:UIInternalSecret}
+      manage:
+        api-key: ${MANAGE_API_KEY:ManageInternalKey}
+        api-secret: ${MANAGE_API_SECRET:ManageInternalSecret}
+      batch:
+        api-key: ${BATCH_API_KEY:BatchInternalKey}
+        api-secret: ${BATCH_API_SECRET:BatchInternalSecret}
+      wallet:
+        api-key: ${WALLET_API_KEY:WalletInternalKey}
+        api-secret: ${WALLET_API_SECRET:WalletInternalSecret}
+  # upload settings:
+  storage:
+    type: s3
+    s3:
+      region: ${S3_REGION:ap-northeast-1}
+      bucket: ${S3_BUCKET:sample}
+      aws-api-key: ${S3_API_KEY:NA}
+      aws-api-secret: ${S3_API_SECRET:NA}
+
+spring:
+  ex-rw-datasource:
+    url: jdbc:mysql://${DB_EX_RW_HOST:${DB_RW_HOST:localhost}}/ex?useSSL=false&characterEncoding=utf8
+    username: ex_rw
+    password: ${DB_EX_RW_PASSWORD:ex_rw_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      validation-timeout: 3000
+      max-lifetime: 600000
+      maximum-pool-size: 50
+      minimum-idle: 2
+  ex-ro-datasource:
+    url: jdbc:mysql://${DB_EX_RO_HOST:${DB_RO_HOST:localhost}}/ex?useSSL=false&characterEncoding=utf8
+    username: ex_ro
+    password: ${DB_EX_RO_PASSWORD:ex_ro_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      validation-timeout: 3000
+      max-lifetime: 600000
+      maximum-pool-size: 50
+      minimum-idle: 2

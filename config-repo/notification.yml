@@ -1,0 +1,11 @@
+# notification配置:
+
+server:
+  # 默认端口为8005:
+  port: 8005
+
+crypto:
+  notification:
+    api:
+      # 配置API服务器地址，默认为http://localhost:8001
+      endpoint: ${API_ENDPOINT:http://localhost:8001}

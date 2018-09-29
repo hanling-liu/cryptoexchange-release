@@ -1,0 +1,39 @@
+# Sequence配置:
+
+server:
+  # Sequence默认端口为8003:
+  port: 8003
+
+crypto:
+  setting:
+    load-symbols-from: db
+
+spring:
+  # master-slave data source config: same as api:
+  ex-rw-datasource:
+    url: jdbc:mysql://${DB_EX_RW_HOST:${DB_RW_HOST:localhost}}/ex?useSSL=false&characterEncoding=utf8
+    username: ex_rw
+    password: ${DB_EX_RW_PASSWORD:ex_rw_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      validation-timeout: 3000
+      max-lifetime: 600000
+      maximum-pool-size: 33
+      minimum-idle: 2
+  # slave datasource:
+  ex-ro-datasource:
+    url: jdbc:mysql://${DB_EX_RO_HOST:${DB_RO_HOST:localhost}}/ex?useSSL=false&characterEncoding=utf8
+    username: ex_ro
+    password: ${DB_EX_RO_PASSWORD:ex_ro_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      validation-timeout: 3000
+      max-lifetime: 600000
+      maximum-pool-size: 5
+      minimum-idle: 2

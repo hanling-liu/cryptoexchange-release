@@ -1,0 +1,73 @@
+# Manage配置:
+
+server:
+  port: 8008
+
+crypto:
+  setting:
+    load-symbols-from: api
+    load-symbols-url: /manage/trades
+  manage:
+    api:
+      # 配置API服务器地址，默认为http://localhost:8001
+      endpoint: ${API_ENDPOINT:http://localhost:8001}
+      # 配置与API服务器通信使用的api-key和api-secret:
+      api-key: ${MANAGE_API_KEY:ManageInternalKey}
+      api-secret: ${MANAGE_API_SECRET:ManageInternalSecret}
+    ui:
+      # 配置UI服务器地址，默认为http://localhost:8000
+      endpoint: ${UI_ENDPOINT:http://localhost:8000}
+      # 配置与UI服务器通信使用的api-key和api-secret:
+      api-key: ${MANAGE_UI_API_KEY:ManageToUIInternalKey}
+      api-secret: ${MANAGE_UI_API_SECRET:ManageToUIInternalSecret}
+
+spring:
+  mg-rw-datasource:
+    url: jdbc:mysql://${DB_MG_RW_HOST:${DB_RW_HOST:localhost}}/mg?useSSL=false&characterEncoding=utf8
+    username: mg_rw
+    password: ${DB_MG_RW_PASSWORD:mg_rw_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      max-lifetime: 600000
+      maximum-pool-size: 50
+      minimum-idle: 5
+  ex-ro-datasource:
+    url: jdbc:mysql://${DB_EX_RO_HOST:${DB_RO_HOST:localhost}}/ex?useSSL=false&characterEncoding=utf8
+    username: ex_ro
+    password: ${DB_EX_RO_PASSWORD:ex_ro_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      validation-timeout: 3000
+      max-lifetime: 600000
+      maximum-pool-size: 10
+      minimum-idle: 5
+  ui-ro-datasource:
+    url: jdbc:mysql://${DB_UI_RO_HOST:${DB_RO_HOST:localhost}}/ui?useSSL=false&characterEncoding=utf8
+    username: ui_ro
+    password: ${DB_UI_RO_PASSWORD:ui_ro_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      max-lifetime: 600000
+      maximum-pool-size: 10
+      minimum-idle: 1
+  hd-ro-datasource:
+    url: jdbc:mysql://${DB_HD_RO_HOST:${DB_RO_HOST:localhost}}/hd?useSSL=false&characterEncoding=utf8
+    username: hd_ro
+    password: ${DB_HD_RO_PASSWORD:hd_ro_password}
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: HikariCP
+      auto-commit: false
+      connection-timeout: 5000
+      max-lifetime: 600000
+      maximum-pool-size: 10
+      minimum-idle: 1

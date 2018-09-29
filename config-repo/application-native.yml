@@ -1,0 +1,28 @@
+# native全局配置:
+
+crypto:
+  order:
+    features:
+      enable-fill-or-kill: true
+      enable-immediate-or-cancel: true
+      enable-post-only: true
+      enable-hidden: true
+      enable-stop: true
+      enable-stop-limit: true
+      enable-trailing-stop: true
+  setting:
+    mining:
+      enabled: true
+      currency: CFC
+      total: 5000000
+      percent: 1.0
+    divident:
+      enabled: true
+      minimum: 100
+      percent: 1.0
+
+# logging config:
+
+logging:
+  level:
+    com.itranswarp.warpdb.WarpDb: DEBUG
