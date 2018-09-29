@@ -1,0 +1,179 @@
+
+
+-- BEGIN generate DDL --
+
+DROP DATABASE IF EXISTS hd;
+
+CREATE DATABASE hd;
+
+DROP USER IF EXISTS hd_rw@'%';
+
+CREATE USER hd_rw@'%' IDENTIFIED BY 'hd_rw_password';
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON hd.* TO hd_rw@'%' WITH GRANT OPTION;
+
+DROP USER IF EXISTS hd_ro@'%';
+
+CREATE USER hd_ro@'%' IDENTIFIED BY 'hd_ro_password';
+
+GRANT SELECT ON hd.* TO hd_ro@'%' WITH GRANT OPTION;
+
+USE hd;
+
+CREATE TABLE sync_blocks (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  createdAt BIGINT NOT NULL,
+  height BIGINT NOT NULL,
+  fee DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  hash VARCHAR(100) NOT NULL,
+  CONSTRAINT UNI_HEIGHT_CUR UNIQUE (height, currency),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE internal_withdraw_requests (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  createdAt BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  withdrawTxId BIGINT NOT NULL,
+  amount DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  errorCode VARCHAR(32) NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  encryptedToAddress VARCHAR(200) NOT NULL,
+  errorMessage VARCHAR(100) NOT NULL,
+  tx VARCHAR(100) NOT NULL,
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE hd_hot_wallet_addresses (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  bipIndex INTEGER NOT NULL,
+  createdAt BIGINT NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  CONSTRAINT UNI_ADDR UNIQUE (address),
+  CONSTRAINT UNI_IDX_CUR UNIQUE (bipIndex, currency),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE sync_accounts (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  syncing BOOL NOT NULL,
+  bipIndex INTEGER NOT NULL,
+  blockHeight BIGINT NOT NULL,
+  createdAt BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  balance DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  blockHash VARCHAR(100) NOT NULL,
+  CONSTRAINT UNI_CUR_ADDR UNIQUE (currency, address),
+  CONSTRAINT UNI_CUR_INDEX UNIQUE (currency, bipIndex),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE withdraw_txs (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  broadcasted BOOL NOT NULL,
+  internal BOOL NOT NULL,
+  createdAt BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  signedTxHash VARCHAR(200) NOT NULL,
+  requestTxData TEXT NOT NULL,
+  signedTxData TEXT NOT NULL,
+  INDEX IDX_TXHASH (signedTxHash),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE sync_utxos (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  used BOOL NOT NULL,
+  bipIndex INTEGER NOT NULL,
+  blockHeight BIGINT NOT NULL,
+  createdAt BIGINT NOT NULL,
+  outputIndex BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  usedInBlockHeight BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  amount DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  blockHash VARCHAR(100) NOT NULL,
+  tx VARCHAR(100) NOT NULL,
+  usedInBlockHash VARCHAR(255) NOT NULL,
+  scriptPubKey VARCHAR(1000) NOT NULL,
+  CONSTRAINT UNI_BLK_TX_IDX UNIQUE (blockHash, tx, outputIndex),
+  INDEX IDX_TX_OUT (tx,outputIndex),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE withdraw_tx_fee (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  blockHeight BIGINT NOT NULL,
+  createdAt BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  feeAmount DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  feeCurrency VARCHAR(32) NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  blockHash VARCHAR(100) NOT NULL,
+  tx VARCHAR(100) NOT NULL,
+  uniqueId VARCHAR(200) NOT NULL,
+  CONSTRAINT UNI_UNIQUE_ID UNIQUE (uniqueId),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE deposit_requests (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  shouldAudit BOOL NOT NULL,
+  bipIndex INTEGER NOT NULL,
+  blockHeight BIGINT NOT NULL,
+  createdAt BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  amount DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  blockHash VARCHAR(100) NOT NULL,
+  uniqueId VARCHAR(200) NOT NULL,
+  encryptedToAddress VARCHAR(1000) NOT NULL,
+  CONSTRAINT UNI_UNIQUE_ID UNIQUE (uniqueId),
+  INDEX IDX_BLOCK_HASH (blockHash),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE sync_withdraw_requests (
+  id BIGINT AUTO_INCREMENT NOT NULL,
+  apiSynced BOOL NOT NULL,
+  createdAt BIGINT NOT NULL,
+  updatedAt BIGINT NOT NULL,
+  version BIGINT NOT NULL,
+  withdrawRequestId BIGINT NOT NULL,
+  withdrawTxId BIGINT NOT NULL,
+  amount DECIMAL(36,18) NOT NULL,
+  withdrawFee DECIMAL(36,18) NOT NULL,
+  currency VARCHAR(32) NOT NULL,
+  errorCode VARCHAR(32) NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  encryptedToAddress VARCHAR(200) NOT NULL,
+  errorMessage VARCHAR(100) NOT NULL,
+  tx VARCHAR(100) NOT NULL,
+  CONSTRAINT UNI_WR_ID UNIQUE (withdrawRequestId),
+  PRIMARY KEY(id)
+) Engine=INNODB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+-- END generate DDL --
