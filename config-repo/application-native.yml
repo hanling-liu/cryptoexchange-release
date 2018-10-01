@@ -11,6 +11,9 @@ crypto:
       enable-stop-limit: true
       enable-trailing-stop: true
   setting:
+    fee:
+      default-maker-rate: -0.0005
+      default-taker-rate: 0.002
     mining:
       enabled: true
       currency: CFC

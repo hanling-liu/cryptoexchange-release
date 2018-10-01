@@ -9,13 +9,13 @@ crypto:
     load-symbols-url: /ui/trades
   ui:
     # CDN服务器前缀
-    cdn-prefix: ${CDN_PREFIX:https://static.highdax.com}
+    cdn-prefix: ${CDN_PREFIX:https://static.local.highdax.com}
     ws:
       # 配置WS服务器地址
-      host: ${WS_HOST:wss://wss.highdax.com}
+      host: ${WS_HOST:wss://wss.local.highdax.com}
     api:
       # 配置API服务器地址
-      endpoint: ${API_ENDPOINT:https://api.highdax.com}
+      endpoint: ${API_ENDPOINT:https://api.local.highdax.com}
       # 配置与API服务器通信使用的api-key和api-secret:
       api-key: ${UI_API_KEY:UIInternalKey}
       api-secret: ${UI_API_SECRET:UIInternalSecret}
