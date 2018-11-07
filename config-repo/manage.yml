@@ -1,4 +1,4 @@
-# Manage配置:
+# Manage configuration:
 
 server:
   port: 8008
@@ -9,18 +9,19 @@ crypto:
     load-symbols-url: /manage/trades
   manage:
     api:
-      # 配置API服务器地址，默认为http://localhost:8001
+      # api server:
       endpoint: ${API_ENDPOINT:http://localhost:8001}
-      # 配置与API服务器通信使用的api-key和api-secret:
+      # api key / secret for API:
       api-key: ${MANAGE_API_KEY:ManageInternalKey}
       api-secret: ${MANAGE_API_SECRET:ManageInternalSecret}
     ui:
-      # 配置UI服务器地址，默认为http://localhost:8000
+      # UI server:
       endpoint: ${UI_ENDPOINT:http://localhost:8000}
-      # 配置与UI服务器通信使用的api-key和api-secret:
+      # api key / secret for UI:
       api-key: ${MANAGE_UI_API_KEY:ManageToUIInternalKey}
       api-secret: ${MANAGE_UI_API_SECRET:ManageToUIInternalSecret}
 
+# datasource configuration:
 spring:
   mg-rw-datasource:
     url: jdbc:mysql://${DB_MG_RW_HOST:${DB_RW_HOST:localhost}}/mg?useSSL=false&characterEncoding=utf8

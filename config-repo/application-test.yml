@@ -1,7 +1,8 @@
-# test:
+# test configuration:
 
 crypto:
   setting:
+    name: HighDAX
     timezone: Asia/Singapore
   order:
     features:

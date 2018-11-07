@@ -1,4 +1,4 @@
-# UI:
+# UI configuration:
 
 server:
   port: 8000
@@ -8,32 +8,33 @@ crypto:
     load-symbols-from: api
     load-symbols-url: /ui/trades
   ui:
-    # CDN服务器前缀
+    # CDN url prefix:
     cdn-prefix: ${CDN_PREFIX:https://static.local.highdax.com}
     ws:
-      # 配置WS服务器地址
+      # WebSocket server URL:
       host: ${WS_HOST:wss://wss.local.highdax.com}
     api:
-      # 配置API服务器地址
+      # API URL:
       endpoint: ${API_ENDPOINT:https://api.local.highdax.com}
-      # 配置与API服务器通信使用的api-key和api-secret:
+      # api key / secret for API server:
       api-key: ${UI_API_KEY:UIInternalKey}
       api-secret: ${UI_API_SECRET:UIInternalSecret}
-      # 配置加密用户Cookie的token-key和token-secret，注意要与API服务器相关配置保持一致:
+      # token key / secret used for encrypted cookie:
       token-key: ${UI_TOKEN_KEY:tokenKey}
       token-secret: ${UI_TOKEN_SECRET:tokenSecret}
     manage-request:
       # internal keys used for internal api invocation:
       api-key: ${MANAGE_UI_API_KEY:ManageToUIInternalKey}
       api-secret: ${MANAGE_UI_API_SECRET:ManageToUIInternalSecret}
+    # configure redirect URL, e.g. redirect doc to "mydocs.zendesk.com":
     redirect:
-      doc: ${REDIRECT_DOCS:/?doc}
-      api: ${REDIRECT_DOCS:/?api}
-      help: ${REDIRECT_DOCS:/?help}
-      blog: ${REDIRECT_DOCS:/?blog}
-      tweeter: ${REDIRECT_DOCS:/?tweeter}
-      telegram: ${REDIRECT_DOCS:/?telegram}
-
+      doc: ${REDIRECT_DOC:/?doc}
+      api: ${REDIRECT_API:/?api}
+      help: ${REDIRECT_HELP:/?help}
+      blog: ${REDIRECT_BLOG:/?blog}
+      tweeter: ${REDIRECT_TWEETER:/?tweeter}
+      telegram: ${REDIRECT_TELEGRAM:/?telegram}
+  # SMTP configuration:
   smtp:
     host: ${SMTP_HOST:localhost}
     port: ${SMTP_PORT:465}
@@ -41,8 +42,8 @@ crypto:
     password: ${SMTP_PASSWORD:password}
     from: ${SMTP_FROM:noreply@localhost}
 
+# datasource config:
 spring:
-  # data source config:
   ui-rw-datasource:
     url: jdbc:mysql://${DB_UI_RW_HOST:${DB_RW_HOST:localhost}}/ui?useSSL=false&characterEncoding=utf8
     username: ui_rw

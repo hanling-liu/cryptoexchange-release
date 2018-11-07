@@ -1,7 +1,6 @@
-# Sequence配置:
+# Sequence configuration:
 
 server:
-  # Sequence默认端口为8003:
   port: 8003
 
 crypto:

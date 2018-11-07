@@ -1,8 +1,8 @@
-# test:
+# production configuration:
 
 crypto:
   setting:
-    name: KitDAX
+    name: HighDAX
     timezone: Asia/Singapore
   order:
     features:
@@ -10,6 +10,6 @@ crypto:
       enable-immediate-or-cancel: true
       enable-post-only: true
       enable-hidden: true
-#      enable-stop: true
-#      enable-stop-limit: true
-#      enable-trailing-stop: true
+      enable-stop: true
+      enable-stop-limit: true
+      enable-trailing-stop: true

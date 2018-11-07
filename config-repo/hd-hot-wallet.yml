@@ -1,4 +1,4 @@
-# HDHotWallet Config:
+# HDHotWallet configuration:
 
 server:
   port: 8009
@@ -9,41 +9,60 @@ crypto:
     load-symbols-url: /wallet/trades
   wallet:
     cold:
+      # cold wallet address, default to "http://localhost:8007":
       endpoint: ${COLD_ENDPOINT:http://localhost:8007}
-      # 配置与冷钱包通信使用的key和secret:
+      # api key / secret used for accessing cold wallet:
       api-key: ${COLD_API_KEY:ColdWalletInternalKey}
       api-secret: ${COLD_API_SECRET:ColdWalletInternalSecret}
     api:
-      # 配置API服务器地址，默认为http://localhost:8001
+      # API server address, default to "http://localhost:8001":
       endpoint: ${API_ENDPOINT:http://localhost:8001}
-      # 配置与API服务器通信使用的api-key和api-secret:
+      # api key / secret:
       api-key: ${WALLET_API_KEY:WalletInternalKey}
       api-secret: ${WALLET_API_SECRET:WalletInternalSecret}
-    # BTC节点:
+    #
+    # Node configuration:
+    #
+    # BTC node:
     btc:
-      enabled: ${BLOCKCHAIN_BTC_ENABLED:false}
+      # set enabled:
+      enabled: ${BLOCKCHAIN_BTC_ENABLED:true}
+      # rpc end point:
       endpoint: ${BLOCKCHAIN_BTC_ENDPOINT:http://btc.blockchain.highdax.com}
-    # Usdt节点:
+      # scan from block height:
+      start-block-height: 548740
+      # scan from block hash:
+      # IMPORTANT: the hash string MUST be quoted:
+      start-block-hash: "000000000000000000163620a604352b80bdf0ee0576fd610fb8df8ec1ad6931"
+    # ETH node:
+    eth:
+      # set enabled:
+      enabled: ${BLOCKCHAIN_ETH_ENABLED:true}
+      # rpc end point:
+      endpoint: ${BLOCKCHAIN_ETH_ENDPOINT:http://eth.blockchain.highdax.com}
+      # scan from block height:
+      start-block-height: 6642570
+      # scan from block hash:
+      # IMPORTANT: the hash string MUST be quoted:
+      start-block-hash: "0xdd2b3f45597a3a55a65182f4f86315b405e8f3a5f3344fe0bee88d274082cd15"
+    # USDT node:
     usdt:
       enabled: ${BLOCKCHAIN_OMNI_ENABLED:false}
       endpoint: ${BLOCKCHAIN_OMNI_ENDPOINT:http://omni.blockchain.highdax.com}
-    # ETH节点:
-    eth:
-      enabled: ${BLOCKCHAIN_ETH_ENABLED:false}
-      endpoint: ${BLOCKCHAIN_ETH_ENDPOINT:http://eth.blockchain.highdax.com}
-    # ETC节点:
+    # ETC node:
     etc:
       enabled: ${BLOCKCHAIN_ETC_ENABLED:false}
       endpoint: ${BLOCKCHAIN_ETC_ENDPOINT:http://etc.blockchain.highdax.com}
-    # LTC节点
+    # LTC node:
     ltc:
       enabled: ${BLOCKCHAIN_LTC_ENABLED:false}
       endpoint: ${BLOCKCHAIN_LTC_ENDPOINT:http://ltc.blockchain.highdax.com}
-    # QTUM节点:
+    # QTUM node:
     qtum:
       enabled: ${BLOCKCHAIN_QTUM_ENABLED:false}
       endpoint: ${BLOCKCHAIN_QTUM_ENDPOINT:http://qtum.blockchain.highdax.com}
 
+# datasource configuration:
 spring:
   hd-rw-datasource:
     url: jdbc:mysql://${DB_HW_RW_HOST:${DB_RW_HOST:localhost}}/hd?useSSL=false&characterEncoding=utf8

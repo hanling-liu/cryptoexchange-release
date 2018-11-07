@@ -1,4 +1,4 @@
-# Spot Match:
+# spot-match configuration:
 
 server:
   port: 8002
@@ -7,14 +7,14 @@ crypto:
   setting:
     load-symbols-from: db
   match:
-    # which ip is slave:
+    # which ip is slave (slave match engine will send delayed message to spot-clearing):
     slaveIp: 10.0.0.0
     snapshot:
-      # 快照保存目录:
+      # directory that stores snapshots, MUST be writable:
       dir: /data/spot-match-snapshot
-      # 最多保存最近的N个快照:
+      # maximum number of snapshots (each symbol) that should be kept:
       max: 20
-      # 快照间隔时间，缺省为600秒:
+      # snapshot interval time, default to 600 seconds (10 minutes):
       interval: 600
 
 spring:

@@ -1,7 +1,6 @@
-# Quotation服务器配置:
+# Quotation configuration:
 
 server:
-  # 默认端口为8006:
   port: 8006
 
 crypto:

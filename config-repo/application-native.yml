@@ -1,4 +1,4 @@
-# native全局配置:
+# native configuration (for local development):
 
 crypto:
   order:
@@ -12,7 +12,7 @@ crypto:
       enable-trailing-stop: true
   setting:
     fee:
-      default-maker-rate: -0.0005
+      default-maker-rate: 0.001
       default-taker-rate: 0.002
     mining:
       enabled: true
@@ -25,7 +25,6 @@ crypto:
       percent: 1.0
 
 # logging config:
-
 logging:
   level:
     com.itranswarp.warpdb.WarpDb: DEBUG

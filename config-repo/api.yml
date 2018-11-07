@@ -1,4 +1,4 @@
-# API配置:
+# API configuration:
 
 server:
   port: 8001
@@ -6,6 +6,7 @@ server:
 crypto:
   setting:
     load-symbols-from: db
+    # load exchange rate of CNY/USD, EUR/USD, ...
     fex:
       from-currency: USD
       to-currencies: AUD, CAD, CNY, EUR, GBP, HKD, JPY, KRW, RUB, SGD, TWD
@@ -13,7 +14,7 @@ crypto:
       alphavantage-api-key: GV7BIQN1HIU1QKEG
   api:
     request:
-      # set token key that configured same as ui:
+      # set token key / secret that configured same as ui:
       token-key: ${UI_TOKEN_KEY:tokenKey}
       token-secret: ${UI_TOKEN_SECRET:tokenSecret}
       # internal keys used for internal api invocation:
@@ -38,6 +39,7 @@ crypto:
       aws-api-key: ${S3_API_KEY:NA}
       aws-api-secret: ${S3_API_SECRET:NA}
 
+# datasource configuration:
 spring:
   ex-rw-datasource:
     url: jdbc:mysql://${DB_EX_RW_HOST:${DB_RW_HOST:localhost}}/ex?useSSL=false&characterEncoding=utf8
