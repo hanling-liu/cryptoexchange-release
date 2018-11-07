@@ -154,21 +154,21 @@ $ node crypto-notification.js
 
 ### UI
 
-URL: [https://www.highdax.com](https://www.highdax.com)
+URL: [https://www.local.highdax.com](https://www.local.highdax.com)
 
 There are already initialized users: `bot0@example.com` ~ `bot999@example.com`, with password `password`.
 
 ### Management
 
-URL: [https://manage.highdax.com](https://manage.highdax.com)
+URL: [https://manage.local.highdax.com](https://manage.local.highdax.com)
 
 Root user: `root@example.com` with password `password`.
 
 ### API
 
-URL: [https://api.highdax.com](https://api.highdax.com)
+URL: [https://api.local.highdax.com](https://api.local.highdax.com)
 
-Sample API: [https://api.highdax.com/v1/market/trades](https://api.highdax.com/v1/market/trades)
+Sample API: [https://api.local.highdax.com/v1/market/trades](https://api.local.highdax.com/v1/market/trades)
 
 ## FAQ
 
