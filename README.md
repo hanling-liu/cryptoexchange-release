@@ -2,6 +2,8 @@
 
 The leading crypto currency exchange platform.
 
+![DEMO](https://github.com/michaelliao/cryptoexchange-release/raw/master/highdax.png)
+
 ## Environment
 
 ### OS
