@@ -4,6 +4,27 @@ The leading crypto currency exchange platform.
 
 ![DEMO](https://github.com/michaelliao/cryptoexchange-release/raw/master/highdax.png)
 
+Features:
+
+- Production-ready for AWS environment.
+- RESTful APIs followed Swagger standard.
+- Multi-currency and multi-symbol support.
+- All professional order types including Stop, Stop-Limit, Trailing-Stop, FOK, IOC, Hidden, Post-Only, etc.
+- High-speed in-memory match engine which can process 10K+ orders/s.
+- Real-time clearing and 100% accurate.
+- Real-time monitor and metrics everything.
+- Real-time financial audit and detect any database compromise on time.
+- HD wallet integration.
+- Seperated hot-wallet and cold-wallet with high security.
+- Build-in support for BTC, BCH, USDT, ETH, ETC, ERC20, etc.
+- Integration with [Vault](https://www.vaultproject.io/) for safe storage of cold-wallet.
+- Different maker / taker fee rates.
+- Negative fee rate for maker.
+- Can charge quote as fee for buyers.
+- Custom extension for order pre-process and post-process.
+- I18N support for English, Chinese, Japanese, Korean, etc.
+- Management console support.
+
 ## Environment
 
 ### OS
