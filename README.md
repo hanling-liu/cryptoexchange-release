@@ -25,11 +25,13 @@ Features:
 - I18N support for English, Chinese, Japanese, Korean, etc.
 - Management console support.
 
-## Environment
+## Evaluate HighDAX Commercial Version
+
+HighDAX commercial version can be run on localhost.
 
 ### OS
 
-Support macOS / Linux. 16G memory.
+Support macOS / Linux. at least 16G memory.
 
 ### MySQL
 
